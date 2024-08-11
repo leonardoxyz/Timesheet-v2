@@ -1,0 +1,153 @@
+﻿{
+  "Rules": [
+    {
+      "RuleName": "AprovarSeId1Ate20",
+      "Description": "Se o Id for entre 1 e 20, o apontamento é aprovado.",
+      "Conditions": [
+        {
+          "Field": "Id",
+          "Operator": "Between",
+          "Value": [ 1, 20 ]
+        }
+      ],
+      "Actions": [
+        {
+          "Field": "IsApproved",
+          "Value": true
+        }
+      ]
+    },
+    {
+      "RuleName": "RejeitarHorasEstagiario",
+      "Description": "Se o funcionário for estagiário e as horas calculadas forem menores que 5, o apontamento é rejeitado.",
+      "Conditions": [
+        {
+          "Field": "EmployeeType",
+          "Operator": "Equals",
+          "Value": "Intern"
+        },
+        {
+          "Field": "CalculatedHours",
+          "Operator": "LessThan",
+          "Value": 5
+        }
+      ],
+      "Actions": [
+        {
+          "Field": "RejectReason",
+          "Value": "Horas insuficientes para estagiário."
+        }
+      ]
+    },
+    {
+      "RuleName": "AceitarEstagiarioHorasValidas",
+      "Description": "Se o funcionário for estagiário e as horas calculadas forem 5 ou mais, o apontamento é aprovado.",
+      "Conditions": [
+        {
+          "Field": "EmployeeType",
+          "Operator": "Equals",
+          "Value": "Intern"
+        },
+        {
+          "Field": "CalculatedHours",
+          "Operator": "GreaterThanOrEqual",
+          "Value": 5
+        }
+      ],
+      "Actions": [
+        {
+          "Field": "IsApproved",
+          "Value": true
+        }
+      ]
+    },
+    {
+      "RuleName": "RejeitarHorasEfetivado",
+      "Description": "Se o funcionário for efetivado e as horas calculadas forem maiores que 12, o apontamento é rejeitado.",
+      "Conditions": [
+        {
+          "Field": "EmployeeType",
+          "Operator": "Equals",
+          "Value": "Funcionario"
+        },
+        {
+          "Field": "CalculatedHours",
+          "Operator": "GreaterThan",
+          "Value": 12
+        }
+      ],
+      "Actions": [
+        {
+          "Field": "RejectReason",
+          "Value": "Horas excessivas para efetivado."
+        }
+      ]
+    },
+    {
+      "RuleName": "RejeitarHorasMenosDe12",
+      "Description": "Se o funcionário registrar menos de 12 horas, o apontamento é rejeitado.",
+      "Conditions": [
+        {
+          "Field": "EmployeeType",
+          "Operator": "Equals",
+          "Value": "Funcionario"
+        },
+        {
+          "Field": "CalculatedHours",
+          "Operator": "LessThan",
+          "Value": 12
+        }
+      ],
+      "Actions": [
+        {
+          "Field": "RejectReason",
+          "Value": "Horas insuficientes para funcionário."
+        }
+      ]
+    },
+    {
+      "RuleName": "AprovarProjetosEspecificos",
+      "Description": "Se o projeto for 42 e as horas calculadas forem maiores ou iguais a 10, o apontamento é aprovado.",
+      "Conditions": [
+        {
+          "Field": "ProjectId",
+          "Operator": "Equals",
+          "Value": 42
+        },
+        {
+          "Field": "CalculatedHours",
+          "Operator": "GreaterThanOrEqual",
+          "Value": 10
+        }
+      ],
+      "Actions": [
+        {
+          "Field": "IsApproved",
+          "Value": true
+        }
+      ]
+    },
+    {
+      "RuleName": "RejeitarHorasInternIncorretas",
+      "Description": "Se o funcionário for estagiário e as horas calculadas forem menores que 5, o apontamento é rejeitado.",
+      "Conditions": [
+        {
+          "Field": "EmployeeType",
+          "Operator": "Equals",
+          "Value": "Intern"
+        },
+        {
+          "Field": "CalculatedHours",
+          "Operator": "LessThan",
+          "Value": 5
+        }
+      ],
+      "Actions": [
+        {
+          "Field": "RejectReason",
+          "Value": "Horas insuficientes para estagiário."
+        }
+      ]
+    }
+  ]
+}
